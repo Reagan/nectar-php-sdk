@@ -1,0 +1,8 @@
+{
+  "name": "bees/bees-php-sdk",
+  "autoload": {
+    "psr-4": {
+      "Bees\\Php\\Sdk\\": "src/"
+    }
+  }
+}
