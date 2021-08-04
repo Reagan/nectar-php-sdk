@@ -1,10 +1,10 @@
 <?php
 
-namespace Bees\Php\Sdk\Models;
+namespace Nectar\Php\Sdk\Models;
 
 class User extends Base
 {
-    const USER_PATH = "/v1/user";
+    const USER_PATH = "/v1/users";
 
     public function __construct(string $key, string $secret)
     {
@@ -12,35 +12,40 @@ class User extends Base
     }
 
     public function createUser(string $firstName, string $lastName, string $username,
-                               string $password, string $phoneNo, string $email, string $imageUrl): string
+                               string $password, string $phoneNo, string $imageUrl,
+                               string $email, bool $activated): string
     {
-        $payload = $this->createPayload($this->createUserParams($firstName, $lastName, $username, $password, $phoneNo, $email, $imageUrl));
+        $payload = $this->createPayload($this->createUserParams($firstName, $lastName, 
+                                                                $username, $password, 
+                                                                $phoneNo, $imageUrl,
+                                                                $email, $activated));
         return $this->post(self::USER_PATH, $payload);
     }
 
-    public function getUser(string $username): string
+    public function getUser(): string
     {
-        $pathArgs = sprintf("username=%s", $username);
-        return $this->get(self::USER_PATH, $pathArgs);
+        return $this->get(self::USER_PATH, "");
     }
 
-    public function updateUser(string $ref, string $firstName, string $lastName, string $username,
-                               string $password, string $phoneNo, string $email, string $imageUrl): string
+    public function updateUser(string $firstName, string $lastName, string $username,
+                               string $password, string $phoneNo, string $imageUrl, 
+                               string $email, bool $activated): string
     {
-        $payload = $this->createPayload($this->createUpdateUserParams($ref, $firstName, $lastName, $username,
-            $password, $phoneNo, $email, $imageUrl));
+        $payload = $this->createPayload($this->createUserParams($firstName, $lastName, $username,
+                                                                        $password, $phoneNo, $imageUrl, 
+                                                                        $email, $activated));
         return $this->put(self::USER_PATH, null, $payload);
     }
 
     public function deleteUser(string $userRef): string
     {
-        $pathArgs = sprintf("ref=%s", $userRef);
-        return $this->delete(self::USER_PATH, $pathArgs);
+        return $this->delete(self::USER_PATH, "");
     }
 
 
     private function createUserParams(string $firstName, string $lastName, string $username,
-                                      string $password, string $phoneNo, string $email, string $imageUrl): array
+                                      string $password, string $phoneNo, string $imageUrl,
+                                      string $email, bool $activated): array
     {
         $params = array();
         $params['first_name'] = $firstName;
@@ -48,18 +53,9 @@ class User extends Base
         $params['username'] = $username;
         $params['password'] = $password;
         $params['phone_no'] = $phoneNo;
-        $params['email'] = $email;
         $params['image_url'] = $imageUrl;
+        $params['email'] = $email;
+        $params['activated'] = $activated;
         return $params;
-    }
-
-    private function createUpdateUserParams(string $ref, string $firstName, string $lastName, string $username,
-                                            string $password, string $phoneNo, string $email, string $imageUrl): array
-    {
-        $params = array();
-        $params['ref'] = $ref;
-        $userParams = $this->createUserParams($firstName, $lastName, $username, $password, $phoneNo, $email, $imageUrl);
-        array_merge($params, $userParams);
-        return array_merge($params, $userParams);
     }
 }

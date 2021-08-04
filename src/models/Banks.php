@@ -1,6 +1,6 @@
 <?php
 
-namespace Bees\Php\Sdk\Models;
+namespace Nectar\Php\Sdk\Models;
 
 class Banks extends Base
 {

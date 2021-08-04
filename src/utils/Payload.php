@@ -1,6 +1,6 @@
 <?php
 
-namespace Bees\Php\Sdk\Utils;
+namespace Nectar\Php\Sdk\Utils;
 
 class Payload
 {

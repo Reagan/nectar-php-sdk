@@ -1,15 +1,15 @@
 <?php
 
-namespace Bees\Php\Sdk\Models;
+namespace Nectar\Php\Sdk\Models;
 
-use Bees\Php\Sdk\Utils\Payload;
+use Nectar\Php\Sdk\Utils\Payload;
 
 abstract class Base
 {
     protected $key;
     protected $secret;
 
-    const BASE_PATH = "https://bees.software";
+    const BASE_PATH = "https://api.nectar.software";
     const CONTENT_TYPE = "application/json";
 
     public function __construct(string $key, string $secret)
@@ -101,12 +101,12 @@ abstract class Base
 
     private function generateHeaders(string $hmac, string $content, string $date, string $nonce) : array {
         return [
-            'Authorization: BEES ' . $this->key . ':' . $hmac,
+            'Authorization: nectar ' . $this->key . ':' . $hmac,
             'Content-Type: ' . self::CONTENT_TYPE,
             'Content-MD5: ' . md5($content),
             'Date: ' . $date,
             'nonce: ' . $nonce,
-            'User-Agent: bees-php-sdk'
+            'User-Agent: nectar-php-sdk'
         ];
     }
 }
