@@ -69,7 +69,9 @@ abstract class Base
         return new Payload($params);
     }
 
-    private function generateHMAC(string $secret, string $method, string $path, string $content, string $contentType, string $date, string $nonce) {
+    private function generateHMAC(string $secret, string $method, string $path, 
+                                    string $content, string $contentType, 
+                                    string $date, string $nonce) {
         $str  = strtoupper($method) . $path . strtoupper(md5($content)) . $contentType . $date . $nonce;
         $hashed = hash_hmac('sha256', $str, $secret);
         return base64_encode($hashed);
@@ -103,7 +105,7 @@ abstract class Base
         return [
             'Authorization: nectar ' . $this->key . ':' . $hmac,
             'Content-Type: ' . self::CONTENT_TYPE,
-            'Content-MD5: ' . md5($content),
+            'Content-MD5: ' . strtoupper(md5($content)),
             'Date: ' . $date,
             'nonce: ' . $nonce,
             'User-Agent: nectar-php-sdk'
