@@ -1,8 +1,18 @@
 {
-  "name": "bees/bees-php-sdk",
+  "name": "nectar/nectar-php-sdk",
+  "description": "Nectar API PHP SDK",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+        {
+            "name": "Reagan Mbitiru",
+            "email": "reagan@nectar.software"
+        }
+   ],
   "autoload": {
     "psr-4": {
-      "Bees\\Php\\Sdk\\": "src/"
+      "Nectar\\Php\\Sdk\\": "src/"
     }
-  }
+  },
+  "require": {}
 }
