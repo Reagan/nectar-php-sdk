@@ -3,12 +3,11 @@
 namespace Nectar\Php\Sdk;
 
 use Nectar\Php\Sdk\Models\User;
-use Nectar\Php\Sdk\Models\Banks;
-use Nectar\Php\Sdk\Models\Account;
+use Nectar\Php\Sdk\Models\PublicKey;
+use Nectar\Php\Sdk\Models\Notification;
+use Nectar\Php\Sdk\Models\Credits;
 use Nectar\Php\Sdk\Models\Credentials;
-use Nectar\Php\Sdk\Models\Keywords;
-use Nectar\Php\Sdk\Models\STKPushTransactions;
-use Nectar\Php\Sdk\Models\C2BTransactions;
+use Nectar\Php\Sdk\Models\Configuration;
 
 class Nectar
 {
@@ -33,4 +32,24 @@ class Nectar
         return new User($this->key, $this->secret);
     }
 
-}            
+    public function getPublicKeysFactory() {
+        return new PublicKey($this->key, $this->secret);
+    }
+
+    public function getNotificationsFactory() {
+        return new Notification($this->key, $this->secret);
+    }
+
+    public function getCreditsFactory() {
+        return new Credits($this->key, $this->secret);
+    }
+
+    public function getCredentialsFactory() {
+        return new Credentials($this->key, $this->secret);
+    }
+
+    public function getConfigurationsFactory() {
+        return new Configuration($this->key, $this->secret);
+    }
+
+}

@@ -32,8 +32,8 @@ class User extends Base
                                string $email, bool $activated): string
     {
         $payload = $this->createPayload($this->createUserParams($firstName, $lastName, $username,
-                                                                        $password, $phoneNo, $imageUrl, 
-                                                                        $email, $activated));
+                                                                $password, $phoneNo, $imageUrl, 
+                                                                $email, $activated));
         return $this->put(self::USER_PATH, null, $payload);
     }
 
