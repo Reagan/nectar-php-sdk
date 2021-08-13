@@ -17,12 +17,14 @@ class Notification extends Base
         return $this->get(self::NOTIFICATIONS_PATH, "");
     }
 
-    public function setNotificationReadStatus(string $ref, bool $status, long $timestamp)
+    public function setNotificationReadStatus(string $ref, bool $status, float $timestamp)
     {
         $params = array();
         $params['notification_ref'] = $ref;
         $params['status'] = $status;
         $params['timestamp'] = $timestamp;
+        var_dump($params);
+
         return $this->put(self::NOTIFICATIONS_PATH, "", $this->createPayload($params));
     }
 }

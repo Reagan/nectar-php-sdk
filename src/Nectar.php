@@ -2,6 +2,7 @@
 
 namespace Nectar\Php\Sdk;
 
+use Nectar\Php\Sdk\Models\Token;
 use Nectar\Php\Sdk\Models\User;
 use Nectar\Php\Sdk\Models\PublicKey;
 use Nectar\Php\Sdk\Models\Notification;
@@ -26,6 +27,10 @@ class Nectar
 
     public function getSecret() {
         return $this->secret;
+    }
+
+    public function getTokensFactory() {
+        return new Token($this->key, $this->secret);
     }
 
     public function getUserFactory() {

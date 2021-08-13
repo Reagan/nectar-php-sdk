@@ -18,7 +18,7 @@ class Credentials extends Base
         return $this->get(self::CREDENTIALS_PATH, $pathArgs);
     }
 
-    public function activatedCredentials(string $ref)
+    public function activateCredentials(string $ref)
     {
         $pathArgs = sprintf("ref=%s", $ref);
         return $this->put(self::CREDENTIALS_PATH, $pathArgs, null);

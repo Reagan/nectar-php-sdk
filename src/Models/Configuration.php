@@ -2,7 +2,7 @@
 
 namespace Nectar\Php\Sdk\Models;
 
-class Configurations extends Base
+class Configuration extends Base
 {
 
     const CONFIGURATIONS_PATH = "/v1/configurations";
@@ -12,19 +12,19 @@ class Configurations extends Base
         parent::__construct($key, $secret);
     }
 
-    public function getConfigurations(string $ref, bool $detailed)
+    public function getConfiguration(string $ref, bool $detailed)
     {
         $pathArgs = sprintf("ref=%s&detailed=%b", $ref, $detailed);
         return $this->get(self::CONFIGURATIONS_PATH, $pathArgs);
     }
 
-    public function activatedConfigurations(string $ref)
+    public function activateConfiguration(string $ref)
     {
         $pathArgs = sprintf("ref=%s", $ref);
         return $this->put(self::CONFIGURATIONS_PATH, $pathArgs, null);
     }
 
-    public function deactivateConfigurations(string $ref)
+    public function deactivateConfiguration(string $ref)
     {
         $pathArgs = sprintf("ref=%s", $ref);
         return $this->delete(self::CONFIGURATIONS_PATH, $pathArgs);

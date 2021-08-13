@@ -30,7 +30,7 @@ class PublicKey extends Base
         return $this->put(self::PUBLIC_KEYS_PATH, $pathArgs, null);
     }
 
-    public function deactivatePublicKey(string $accountRef)
+    public function deactivatePublicKey(string $ref)
     {
         $pathArgs = sprintf("ref=%s", $ref);
         return $this->delete(self::PUBLIC_KEYS_PATH, $pathArgs);
