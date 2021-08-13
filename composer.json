@@ -14,5 +14,7 @@
       "Nectar\\Php\\Sdk\\": "src/"
     }
   },
-  "require": {}
+  "require": {
+  	"php": ">=7.2"
+  }
 }
