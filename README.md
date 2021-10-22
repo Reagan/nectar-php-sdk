@@ -6,8 +6,15 @@ The Nectar PHP API allows integration with the Nectar API and the generation of 
 
 Please ensure that you have PHP7.2+ installed to use these bindings.
 
-### Examples
+## Installation
 
+Use the package manager [composer](https://getcomposer.org) to install this package.
+
+```bash
+composer require nectar/nectar-php-sdk
+```
+
+### Usage
 
 ```
 <?php
